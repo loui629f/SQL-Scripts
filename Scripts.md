@@ -1,5 +1,5 @@
-DROP TABLE PET;
-DROP TABLE PET_OWNER;
+**CREATE TABLES**
+
 CREATE TABLE PET_OWNER(
 OwnerID				INT NOT NULL,
 OwnerLastName		NVARCHAR(100) NOT NULL,
@@ -26,7 +26,6 @@ CONSTRAINT PET_PK PRIMARY KEY (PetID)
 
 USE A_DB17_2018
 GO
-/* *** SQL-INSERT-CH??-01 *** */
 INSERT INTO PET_OWNER VALUES (1, 'Downs', 'Marsha', '555 537 8765', 'Marsha.Downs@somewhere.com')
 INSERT INTO PET_OWNER VALUES (2, 'James', 'Richard', '555 537 7654', 'Richard.James@somewhere.com')
 INSERT INTO PET_OWNER VALUES (3, 'Frier', 'Liz', '555 537 6543', 'Liz.Frier@somewhere.com')
@@ -39,3 +38,24 @@ INSERT INTO PET VALUES (4, 'AJ', 'Dog', 'Collie Mix', '05.05.2011', 20.0, 3)
 INSERT INTO PET VALUES (5, 'Cedro', 'Cat', 'Unknown', '06.06.2009', 9.5, 2)
 INSERT INTO PET(PetID, PetName, PetType, PetBreed, PetWeight, OwnerID) VALUES (6, 'Wooley', 'Cat', 'Unknown', 9.5, 2)
 INSERT INTO PET VALUES (7, 'Buster', 'Dog', 'Border Collie', '11.12.2008', 25.0, 4)
+
+**STORED PROCEDURE**
+
+CREATE PROC InsertPet
+(
+	@PetID			INT				=NULL,
+	@PetName		NVARCHAR(16)	=NULL,
+	@PetType		NVARCHAR(16)	=NULL,
+	@PetBreed		NVARCHAR(100)	=NULL,
+	@PetDOB			DATETIME2		=NULL,
+	@PetWeight		FLOAT(1)		=NULL,
+	@OwnerID		INT				=NULL
+)
+AS
+	BEGIN
+		INSERT INTO PET (PetID, PetName, PetType, PetBreed, PetDOB, PetWeight, OwnerID)
+		VALUES (@PetID, @PetName, @PetType, @PetBreed, @PetDOB, @PetWeight, @OwnerID)
+	END
+	
+	
+EXEC InsertPet @PetID = 21, @PetType = 'CAT', @PetBreed = 'Unknown', @PetWeight = 20.0, @OwnerID = 1, @PetName = 'kat'
