@@ -77,3 +77,20 @@ AS
 
 
 EXEC InsertOwner @OwnerID = 20, @OwnerLastName = 'Downs', @OwnerFirstName = 'Marsha', @OwnerEmail = 'Marsha.Downs@some.com'
+
+
+CREATE PROC	InsertBreed
+(
+@BreedName					NVARCHAR(100)	=NULL,
+@MinWeight					FLOAT			=NULL,
+@MaxWeight					FLOAT			=NULL,
+@AverageLifeExpendency		INT				=NULL
+)
+
+AS
+	BEGIN
+		INSERT INTO BREED (BreedName,MinWeight,MaxWeight,AverageLifeExpendency)
+		VALUES (@BreedName,@MinWeight,@MaxWeight,@AverageLifeExpendency)
+	END
+
+EXEC InsertBreed @BreedName = 'kat'
