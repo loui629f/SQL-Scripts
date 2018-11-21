@@ -59,3 +59,21 @@ AS
 	
 	
 EXEC InsertPet @PetID = 21, @PetType = 'CAT', @PetBreed = 'Unknown', @PetWeight = 20.0, @OwnerID = 1, @PetName = 'kat'
+
+CREATE PROC InsertOwner
+(
+@OwnerID			INT				=NULL,
+@OwnerLastName		VARCHAR(100)	=NULL,
+@OwnerFirstName		VARCHAR(100)	=NULL,
+@OwnerPhone			VARCHAR(100)	=NULL,
+@OwnerEmail			VARCHAR(100)	=NULL
+)
+
+AS
+	BEGIN
+		INSERT INTO PET_OWNER (OwnerID,OwnerLastName,OwnerFirstName,OwnerPhone,OwnerEmail)
+		VALUES (@OwnerID,@OwnerLastName,@OwnerFirstName,@OwnerPhone,@OwnerEmail)
+	END
+
+
+EXEC InsertOwner @OwnerID = 20, @OwnerLastName = 'Downs', @OwnerFirstName = 'Marsha', @OwnerEmail = 'Marsha.Downs@some.com'
