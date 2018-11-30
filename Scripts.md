@@ -94,3 +94,32 @@ AS
 	END
 
 EXEC InsertBreed @BreedName = 'kat'
+
+**Ex31-Implementer tabeller**
+
+CREATE TABLE Ex31Person(
+Id			INT IDENTITY (1, 1),
+Navn		NVARCHAR(100)	NOT NULL
+CONSTRAINT PK_Ex31Person PRIMARY KEY (Id)
+);
+
+CREATE TABLE Ex31Læge(
+Id			INT			NOT NULL,
+Lønramme	NVARCHAR(1)	NOT NULL
+CONSTRAINT FK_Ex31Læge FOREIGN KEY (Id)
+	REFERENCES Ex31Person (Id),
+CONSTRAINT PK_Ex31Læge PRIMARY KEY (Id)
+);
+
+go
+alter PROC spIndsætLæge(
+@Navn			NVARCHAR(100),
+@Lønramme		NVARCHAR(1)
+)
+AS
+	BEGIN
+		INSERT INTO Ex31Person VALUES (@Navn)
+DECLARE @LastValue AS INT;
+SET @LastValue = (SELECT SCOPE_IDENTITY());
+		INSERT INTO Ex31Læge VALUES (@LastValue,@Lønramme)
+		END
