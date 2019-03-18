@@ -154,3 +154,28 @@ WHERE Dept_Name = 'Administration'
 
 SELECT *
 FROM Administration
+
+
+**CREATE TRIGGERS**
+
+CREATE TRIGGER trAfterDeleteCustomer ON Ex62_Customer
+AFTER DELETE
+AS
+	declare @id int
+	declare @fname nvarchar(40)
+	declare @lname nvarchar(40)
+	declare @zip nvarchar (4)
+
+	select @id=d.Customer_Id FROM deleted d
+	select @fname=d.FName from deleted d
+	select @lname=d.LName from deleted d
+	select @zip=d.Zip from deleted d
+
+	INSERT INTO EX62_DeletedCustomer
+	values (@id,@fname,@lname,@zip)
+
+	PRINT 'hej'
+
+	SELECT * FROM EX62_Customer
+	SELECT * FROM EX62_DeletedCustomer
+delete from EX62_Customer where Customer_Id=1
