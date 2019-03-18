@@ -125,7 +125,7 @@ SET @LastValue = (SELECT SCOPE_IDENTITY());
 		END
 		
 		
-** CREATE VIEWS **
+**CREATE VIEWS**
 
 CREATE VIEW AllEmployees AS
 SELECT E.Emp_Id, E.FName, E.LName, D.Dept_Name, Z.Zip, Z.City, M.Manager
