@@ -125,8 +125,9 @@ SET @LastValue = (SELECT SCOPE_IDENTITY());
 		END
 		
 		
-** CREATER VIEWS **
-ALTER VIEW AllEmployees AS
+** CREATE VIEWS **
+
+CREATE VIEW AllEmployees AS
 SELECT E.Emp_Id, E.FName, E.LName, D.Dept_Name, Z.Zip, Z.City, M.Manager
 FROM EX62_Employee E INNER JOIN EX62_Department D ON E.Dep_Id=D.Dep_Id
 	INNER JOIN EX62_ZipCity Z ON E.Zip=Z.Zip
@@ -136,7 +137,7 @@ FROM EX62_Employee E INNER JOIN EX62_Department D ON E.Dep_Id=D.Dep_Id
 	SELECT *
 	FROM AllEmployees
 
-ALTER VIEW AllOrderLines AS
+CREATE VIEW AllOrderLines AS
 SELECT O.Order_Id, C.FName, C.LName, CONVERT(DATE, Order_Date) AS Order_date, P.Prod_Name, P.Price, OL.Amount
 FROM EX62_Order O INNER JOIN EX62_Customer C ON O.Customer=C.Customer_Id
 	INNER JOIN EX62_OrderLine OL ON O.Order_Id=OL.Order_Id
@@ -145,3 +146,11 @@ FROM EX62_Order O INNER JOIN EX62_Customer C ON O.Customer=C.Customer_Id
 SELECT *
 FROM AllOrderLines
 
+CREATE VIEW Administration AS
+SELECT E.FName, E.LName, Z.Zip, Z.City 
+FROM EX62_Employee E INNER JOIN EX62_ZipCity Z ON E.Zip=Z.Zip
+INNER JOIN EX62_Department D ON E.Dep_Id=D.Dep_Id
+WHERE Dept_Name = 'Administration'
+
+SELECT *
+FROM Administration
