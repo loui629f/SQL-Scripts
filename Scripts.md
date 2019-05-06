@@ -179,3 +179,52 @@ AS
 	SELECT * FROM EX62_Customer
 	SELECT * FROM EX62_DeletedCustomer
 delete from EX62_Customer where Customer_Id=1
+
+
+**EKSAMEN**
+
+create table EVENT(
+NotAcceptedEventId  INT NOT NULL UNIQUE,
+EventName			NVARCHAR(100) NOT NULL,
+EventDate			DATETIME2 NOT NULL,
+EventDescription	NVARCHAR(100) NOT NULL,
+constraint EVENT_PK Primary key (NotAcceptedEventId));
+
+
+create table CONFIRMED_EVENT(
+EventId			INT NOT NULL UNIQUE,
+EventName		NVARCHAR(100) NOT NULL,
+EventDate			DATETIME2 NOT NULL,
+EventDescription	NVARCHAR(100) NOT NULL,
+constraint CONFIRMED_EVENT_PK primary key (EventId));
+		
+
+create table USERS(
+UserId		INT NOT NULL UNIQUE,
+UserName	NVARCHAR(50) NOT NULL,
+UserPassword	INT NOT NULL,
+constraint USER_PK primary key (UserId));
+
+
+create table COMMENT(
+CommentId		INT NOT NULL UNIQUE,
+UserId			INT NOT NULL UNIQUE,
+Comment			NVARCHAR(1000) NOT NULL,
+constraint COMMENT_PK primary key (CommentId),
+constraint COMMENT_FK foreign key (UserId)
+		references USERS (UserId)
+				on delete no action);
+
+create table EVENT_SHIFT(
+ShiftId			INT NOT NULL UNIQUE,
+EventId			INT NOT NULL,
+UserId			INT NOT NULL,
+ShiftDate		DATETIME2 NOT NULL,
+ShiftType		NVARCHAR(15) NOT NULL,
+constraint EVENT_PK primary key (ShiftId),
+constraint EVENT_FK1 foreign key (EventId)
+		references CONFIRMED_EVENT (EventId)
+			on delete no action,
+constraint EVENT_FK2 foreign key (UserId)
+		references USERS (UserId)
+			on delete no action);
