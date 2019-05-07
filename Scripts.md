@@ -200,7 +200,7 @@ constraint CONFIRMED_EVENT_PK primary key (EventId));
 		
 
 create table USERS(
-UserId		INT NOT NULL UNIQUE,
+UserEmail	NVARCHAR(50) NOT NULL UNIQUE,
 UserName	NVARCHAR(50) NOT NULL,
 UserPassword	INT NOT NULL,
 constraint USER_PK primary key (UserId));
