@@ -195,7 +195,7 @@ create table USERS(
 UserEmail	NVARCHAR(50) NOT NULL UNIQUE,
 UserName	NVARCHAR(50) NOT NULL,
 UserPassword	INT NOT NULL,
-constraint USER_PK primary key (UserId));
+constraint USER_PK primary key (UserEmail));
 
 
 create table COMMENT(
