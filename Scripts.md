@@ -184,19 +184,11 @@ delete from EX62_Customer where Customer_Id=1
 **EKSAMEN**
 
 create table EVENT(
-NotAcceptedEventId  INT NOT NULL UNIQUE,
+EventId  			INT NOT NULL UNIQUE,
 EventName			NVARCHAR(100) NOT NULL,
 EventDate			DATETIME2 NOT NULL,
 EventDescription	NVARCHAR(100) NOT NULL,
 constraint EVENT_PK Primary key (NotAcceptedEventId));
-
-
-create table CONFIRMED_EVENT(
-EventId			INT NOT NULL UNIQUE,
-EventName		NVARCHAR(100) NOT NULL,
-EventDate			DATETIME2 NOT NULL,
-EventDescription	NVARCHAR(100) NOT NULL,
-constraint CONFIRMED_EVENT_PK primary key (EventId));
 		
 
 create table USERS(
@@ -208,23 +200,23 @@ constraint USER_PK primary key (UserId));
 
 create table COMMENT(
 CommentId		INT NOT NULL UNIQUE,
-UserId			INT NOT NULL UNIQUE,
+UserEmail		NVARCHAR(50) NOT NULL UNIQUE,
 Comment			NVARCHAR(1000) NOT NULL,
 constraint COMMENT_PK primary key (CommentId),
-constraint COMMENT_FK foreign key (UserId)
-		references USERS (UserId)
+constraint COMMENT_FK foreign key (UserEmail)
+		references USERS (UserEmail)
 				on delete no action);
 
 create table EVENT_SHIFT(
 ShiftId			INT NOT NULL UNIQUE,
 EventId			INT NOT NULL,
-UserId			INT NOT NULL,
+UserEmail		NVARCHAR(50) NOT NULL,
 ShiftDate		DATETIME2 NOT NULL,
 ShiftType		NVARCHAR(15) NOT NULL,
 constraint EVENT_PK primary key (ShiftId),
 constraint EVENT_FK1 foreign key (EventId)
-		references CONFIRMED_EVENT (EventId)
+		references EVENT (EventId)
 			on delete no action,
-constraint EVENT_FK2 foreign key (UserId)
-		references USERS (UserId)
+constraint EVENT_FK2 foreign key (UserEmail)
+		references USERS (UserEmail)
 			on delete no action);
