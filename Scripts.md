@@ -213,7 +213,7 @@ EventId			INT NOT NULL,
 UserEmail		NVARCHAR(50) NOT NULL,
 ShiftDate		DATETIME2 NOT NULL,
 ShiftType		NVARCHAR(15) NOT NULL,
-constraint EVENT_PK primary key (ShiftId),
+constraint EVENT_SHIFT_PK primary key (ShiftId),
 constraint EVENT_FK1 foreign key (EventId)
 		references EVENT (EventId)
 			on delete no action,
