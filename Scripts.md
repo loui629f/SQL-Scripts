@@ -188,7 +188,7 @@ EventId  			INT NOT NULL UNIQUE,
 EventName			NVARCHAR(100) NOT NULL,
 EventDate			DATETIME2 NOT NULL,
 EventDescription	NVARCHAR(100) NOT NULL,
-constraint EVENT_PK Primary key (NotAcceptedEventId));
+constraint EVENT_PK Primary key (EventId));
 		
 
 create table USERS(
