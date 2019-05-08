@@ -241,3 +241,7 @@ create procedure SelectAllComments
 as
 select * from COMMENT
 go;
+
+create procedure SelectConfirmedEvents
+as
+select * from EVENT where EventConfirmed = 1;
