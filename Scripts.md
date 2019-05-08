@@ -245,3 +245,32 @@ go;
 create procedure SelectConfirmedEvents
 as
 select * from EVENT where EventConfirmed = 1;
+
+
+create procedure InsertEventVolunteer @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100), @EventConfirmed bit
+as
+insert into [EVENT]
+([EventName],
+[EventDate],
+[EventDescription],
+[EventConfirmed])
+values
+(@EventName,
+@EventDate,
+@EventDescription,
+0)
+go
+
+create procedure InsertEventAdmin @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100), @EventConfirmed bit
+as
+insert into [EVENT]
+([EventName],
+[EventDate],
+[EventDescription],
+[EventConfirmed])
+values
+(@EventName,
+@EventDate,
+@EventDescription,
+1)
+go
