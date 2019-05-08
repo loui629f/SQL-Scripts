@@ -184,7 +184,7 @@ delete from EX62_Customer where Customer_Id=1
 **EKSAMEN**
 
 create table EVENT(
-EventId  			INT NOT NULL UNIQUE,
+EventId  			INT IDENTITY,
 EventName			NVARCHAR(100) NOT NULL,
 EventDate			DATETIME2 NOT NULL,
 EventDescription	NVARCHAR(100) NOT NULL,
@@ -199,7 +199,7 @@ constraint USER_PK primary key (UserEmail));
 
 
 create table COMMENT(
-CommentId		INT NOT NULL UNIQUE,
+CommentId		INT IDENTITY,
 UserEmail		NVARCHAR(50) NOT NULL UNIQUE,
 Comment			NVARCHAR(1000) NOT NULL,
 constraint COMMENT_PK primary key (CommentId),
@@ -208,7 +208,7 @@ constraint COMMENT_FK foreign key (UserEmail)
 				on delete no action);
 
 create table EVENT_SHIFT(
-ShiftId			INT NOT NULL UNIQUE,
+ShiftId			INT IDENTITY,
 EventId			INT NOT NULL,
 UserEmail		NVARCHAR(50) NOT NULL,
 ShiftDate		DATETIME2 NOT NULL,
@@ -247,7 +247,7 @@ as
 select * from EVENT where EventConfirmed = 1;
 
 
-create procedure InsertEventVolunteer @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100), @EventConfirmed bit
+create procedure InsertEventVolunteer @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
 as
 insert into [EVENT]
 ([EventName],
@@ -261,7 +261,7 @@ values
 0)
 go
 
-create procedure InsertEventAdmin @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100), @EventConfirmed bit
+create procedure InsertEventAdmin @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
 as
 insert into [EVENT]
 ([EventName],
