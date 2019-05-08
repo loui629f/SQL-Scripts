@@ -220,3 +220,24 @@ constraint EVENT_FK1 foreign key (EventId)
 constraint EVENT_FK2 foreign key (UserEmail)
 		references USERS (UserEmail)
 			on delete no action);
+			
+
+create procedure SelectAllEvents
+as
+select * from EVENT
+go;
+
+create procedure SelectAllShifts
+as
+select * from EVENT_SHIFT
+go;
+
+create procedure SelectAllUsers
+as
+select * from USERS
+go;
+
+create procedure SelectAllComments
+as
+select * from COMMENT
+go;
