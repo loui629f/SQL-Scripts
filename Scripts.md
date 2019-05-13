@@ -187,7 +187,8 @@ create table EVENT(
 EventId  			INT IDENTITY,
 EventName			NVARCHAR(100) NOT NULL,
 EventDate			DATETIME2 NOT NULL,
-EventDescription	NVARCHAR(100) NOT NULL,
+EventDescription		NVARCHAR(100) NOT NULL,
+EventConfirmed			BIT NOT NULL,
 constraint EVENT_PK Primary key (EventId));
 		
 
