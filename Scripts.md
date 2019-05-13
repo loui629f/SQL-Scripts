@@ -222,10 +222,10 @@ constraint EVENT_FK2 foreign key (UserEmail)
 			on delete no action);
 			
 
-create procedure spSelectAllEvents
+create procedure spSelectNotConfirmedEvents
 as
-select * from EVENT
-go;
+select * from EVENT where EventConfirmed = 0;
+
 
 create procedure spSelectAllShifts
 as
