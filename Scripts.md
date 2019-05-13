@@ -222,32 +222,32 @@ constraint EVENT_FK2 foreign key (UserEmail)
 			on delete no action);
 			
 
-create procedure SelectAllEvents
+create procedure spSelectAllEvents
 as
 select * from EVENT
 go;
 
-create procedure SelectAllShifts
+create procedure spSelectAllShifts
 as
 select * from EVENT_SHIFT
 go;
 
-create procedure SelectAllUsers
+create procedure spSelectAllUsers
 as
 select * from USERS
 go;
 
-create procedure SelectAllComments
+create procedure spSelectAllComments
 as
 select * from COMMENT
 go;
 
-create procedure SelectConfirmedEvents
+create procedure spSelectConfirmedEvents
 as
 select * from EVENT where EventConfirmed = 1;
 
 
-create procedure InsertEventVolunteer @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
+create procedure spInsertEventVolunteer @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
 as
 insert into [EVENT]
 ([EventName],
@@ -261,7 +261,7 @@ values
 0)
 go
 
-create procedure InsertEventAdmin @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
+create procedure spInsertEventAdmin @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
 as
 insert into [EVENT]
 ([EventName],
