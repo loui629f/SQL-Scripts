@@ -186,8 +186,7 @@ delete from EX62_Customer where Customer_Id=1
 create table EVENT(
 EventId  			INT IDENTITY,
 EventName			NVARCHAR(100) NOT NULL,
-EventDate			DATE NOT NULL,
-EventTime			TIME NOT NULL,
+EventDate			DATETIME NOT NULL,
 EventDescription		NVARCHAR(100) NOT NULL,
 EventConfirmed			BIT NOT NULL,
 constraint EVENT_PK Primary key (EventId));
@@ -249,34 +248,30 @@ as
 select * from EVENT where EventConfirmed = 1;
 
 
-create procedure spInsertEventVolunteer @EventName nvarchar(100), @EventDate date, @EventTime time, @EventDescription nvarchar(100)
+create procedure spInsertEventVolunteer @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
 as
 insert into [EVENT]
 ([EventName],
 [EventDate],
-[EventTime],
 [EventDescription],
 [EventConfirmed])
 values
 (@EventName,
 @EventDate,
-@EventTime,
 @EventDescription,
 0)
 go
 
-create procedure spInsertEventAdmin @EventName nvarchar(100), @EventDate date, @EventTime time, @EventDescription nvarchar(100)
+create procedure spInsertEventAdmin @EventName nvarchar(100), @EventDate datetime, @EventDescription nvarchar(100)
 as
 insert into [EVENT]
 ([EventName],
 [EventDate],
-[EventTime],
 [EventDescription],
 [EventConfirmed])
 values
 (@EventName,
 @EventDate,
-@EventTime,
 @EventDescription,
 1)
 go
